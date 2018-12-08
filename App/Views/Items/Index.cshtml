@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    @(Html.DevExtreme().DataGrid()
+                        .ID("items_index")
+                        .Columns(columns =>
+                        {
+                            columns.Add().DataField("ItemId").Caption("S NO.");
+                            columns.Add().DataField("VendorName").Caption("Vendor");
+                            columns.Add().DataField("ItemName").Caption("Item Name");
+                            columns.Add().DataField("ItemType").Caption("Item Type");
+                            columns.Add().DataField("ItemCost").Caption("Cost per Item ");
+                        })
+                        .DataSource(d => d.Mvc().Controller("Items").LoadAction("GetAllItems"))
+    )
+
+</head>
+<body>
+</body>
+</html>
