@@ -31,7 +31,7 @@ namespace App.Controllers
             return DataSourceLoader.Load(allItems, loadOptions);
         }
 
-        public IActionResult AddItem()
+        public IActionResult AddEditItem(int id =0 )
         {
             return View();
         }
