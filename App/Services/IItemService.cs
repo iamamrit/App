@@ -9,5 +9,6 @@ namespace App.Services
    public interface IItemService
    {
         List<Items> GetAllItems();
+        int addItems(Items items);
    }
 }

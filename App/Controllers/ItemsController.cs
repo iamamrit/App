@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Models;
 using App.Services;
 using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Mvc;
@@ -28,6 +29,34 @@ namespace App.Controllers
         {
             var allItems = _itemService.GetAllItems();
             return DataSourceLoader.Load(allItems, loadOptions);
+        }
+
+        public IActionResult AddItem()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public JsonResult AddEditItem(Items items)
+        {
+            try
+            {
+                Items itemsstore = new Items();
+               
+                if (ModelState.IsValid)
+                {
+                    var result = _itemService.addItems(items);  
+                    if (result == 1)
+                    {
+                        return Json(new { result = "1", message = "Success." });
+                    }
+                }
+            }
+            catch {
+                Exception ex;
+            }
+            return Json(new { result = "0", message = "Failed." });
         }
     }
 }
